@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/FirstPage.dart';
+import 'package:flutter_application_1/StartPage.dart';
 
-
-class HomePage extends StatelessWidget{
-  @override
+class Settingpage extends StatelessWidget {
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ホーム"),
+        title : Text("スタート")
       ),
-      body: Center(
+      body : Center(
         child: TextButton(
-          child: Text("1ページ目に遷移する"),
+          child: Text("スタート画面に戻る"),
+          // （1） 前の画面に戻る
           onPressed: (){
-            // （1） 指定した画面に遷移する
+             // （1） 指定した画面に遷移する
             Navigator.push(context, MaterialPageRoute(
               // （2） 実際に表示するページ(ウィジェット)を指定する
-              builder: (context) => FirstPage()
+              builder: (context) => Startpage()
             ));
           },
         ),
-      ),
+      )
     );
   }
+
 }
