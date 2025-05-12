@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/HomePage.dart';
-import 'package:flutter_application_1/MainPageWidget.dart';
+import 'package:flutter_application_1/StartPage.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:MainPageWidget(),
+      home: Startpage(),
     );
   }
 }
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        // the App.build method, and use it to set our title.
         title: Text(widget.title),
       ),
       body: Center(
