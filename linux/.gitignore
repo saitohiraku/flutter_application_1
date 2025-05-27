@@ -1,1 +1,28 @@
 flutter/ephemeral
+# Node modules
+node_modules/
+
+# Build files
+.build/
+
+# Database (if using SQLite)
+*.db
+*.sqlite
+
+# Local environment settings
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Strapi cache and logs
+.cache/
+logs/
+
+# Optional: uploads
+public/uploads/
+
+# VSCode settings
+.vscode/
