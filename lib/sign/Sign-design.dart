@@ -11,8 +11,8 @@ class _SignDesignState extends State<SignDesign> {
   final SignController controller = SignController();
   String? imageUrl;
 
-  void _handleSearch(String value) {
-    controller.onSearchSubmitted(value);
+  void _handleSearch(String value) async {
+  await controller.fetchImageFromStrapi(value);
     setState(() {
       imageUrl = controller.getImageUrl();
     });

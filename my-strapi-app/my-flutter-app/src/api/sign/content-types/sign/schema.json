@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "signs",
+  "info": {
+    "singularName": "sign",
+    "pluralName": "signs",
+    "displayName": "SignLanguage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "SignId": {
+      "type": "string",
+      "required": true
+    },
+    "SignSearch": {
+      "type": "string",
+      "required": true
+    },
+    "SignUrl": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
