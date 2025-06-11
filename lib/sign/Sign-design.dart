@@ -9,12 +9,12 @@ class SignDesign extends StatefulWidget {
 
 class _SignDesignState extends State<SignDesign> {
   final SignController controller = SignController();
-  String? imageUrl;
+  List<String> imageUrls = [];
 
   void _handleSearch(String value) async {
-  await controller.fetchImageFromStrapi(value);
+    await controller.fetchImagesFromStrapi(value);
     setState(() {
-      imageUrl = controller.getImageUrl();
+      imageUrls = controller.getImageUrls();
     });
   }
 
@@ -29,27 +29,32 @@ class _SignDesignState extends State<SignDesign> {
             TextField(
               controller: controller.searchController,
               decoration: InputDecoration(
-                hintText: "検索",
+                hintText: "例: あ い う え お",
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               onSubmitted: _handleSearch,
             ),
-            //検索バー
             SizedBox(height: 20),
             TextButton(
               child: Text("スタート画面に戻る"),
               onPressed: controller.navigateToStartPage(context),
             ),
             SizedBox(height: 20),
-            if (imageUrl != null)
-              Image.network(
-                imageUrl!,
-                width: 200,
-                height: 200,
-              )
-            else
-              Text("画像がありません"),
+            Expanded(
+              child: imageUrls.isNotEmpty
+                  ? ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: imageUrls.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Image.network(imageUrls[index], height: 200),
+                        );
+                      },
+                    )
+                  : Text("画像がありません"),
+            ),
           ],
         ),
       ),
