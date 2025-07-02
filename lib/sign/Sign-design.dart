@@ -9,12 +9,12 @@ class SignDesign extends StatefulWidget {
 
 class _SignDesignState extends State<SignDesign> {
   final SignController controller = SignController();
-  List<String> imageUrls = [];
+  List<Map<String, String>> imageData = [];
 
   void _handleSearch(String value) async {
     await controller.fetchImagesFromStrapi(value);
     setState(() {
-      imageUrls = controller.getImageUrls();
+      imageData = controller.getImageData();
     });
   }
 
@@ -29,7 +29,7 @@ class _SignDesignState extends State<SignDesign> {
             TextField(
               controller: controller.searchController,
               decoration: InputDecoration(
-                hintText: "例: あ い う え お",
+                hintText: "例: あ い う",
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
@@ -42,14 +42,47 @@ class _SignDesignState extends State<SignDesign> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: imageUrls.isNotEmpty
+              child: imageData.isNotEmpty
                   ? ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: imageUrls.length,
+                      itemCount: imageData.length,
                       itemBuilder: (context, index) {
+                        final word = imageData[index]['word']!;
+                        final url = imageData[index]['url']!;
                         return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Image.network(imageUrls[index], height: 200),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Column(
+                            children: [
+                              Text(
+                                word,
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 8),
+                              Container(
+                                width: 150,
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 8,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Image.network(
+                                    url,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     )
