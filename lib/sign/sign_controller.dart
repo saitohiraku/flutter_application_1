@@ -5,10 +5,11 @@ import '../StartPage.dart';
 
 class SignController {
   final TextEditingController searchController = TextEditingController();
-  final List<String> imageUrls = [];
+
+  final List<Map<String, String>> imageData = []; // ← ワードと画像URLのペア
 
   Future<void> fetchImagesFromStrapi(String input) async {
-    imageUrls.clear();
+    imageData.clear();
 
     final keywords = input.trim().split(RegExp(r'\s+'));
 
@@ -27,7 +28,7 @@ class SignController {
                 ? imagePath
                 : 'http://localhost:1337$imagePath';
 
-            imageUrls.add(imageUrl);
+            imageData.add({'word': keyword, 'url': imageUrl});
           }
         }
       } catch (e) {
@@ -36,7 +37,7 @@ class SignController {
     }
   }
 
-  List<String> getImageUrls() => imageUrls;
+  List<Map<String, String>> getImageData() => imageData;
 
   VoidCallback navigateToStartPage(BuildContext context) {
     return () {
