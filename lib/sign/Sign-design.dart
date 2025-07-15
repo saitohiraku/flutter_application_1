@@ -60,8 +60,8 @@ class _SignDesignState extends State<SignDesign> {
                               ),
                               SizedBox(height: 8),
                               Container(
-                                width: 150,
-                                height: 200,
+                                width: 330,
+                                height: 330,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(12),
